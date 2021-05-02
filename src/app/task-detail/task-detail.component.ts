@@ -44,15 +44,14 @@ export class TaskDetailComponent implements OnInit {
     this.EditForm.value.startDate = this.EditForm.value.startDate.year+'-'+this.EditForm.value.startDate.month+'-'+this.EditForm.value.startDate.day;
     this.EditForm.value.endDate = this.EditForm.value.endDate.year+'-'+this.EditForm.value.endDate.month+'-'+this.EditForm.value.endDate.day;
     this.EditForm.value['project'] = this.pid;
-    this.dataProvider.UploadTaskDetails(this.pid,this.tid,this.EditForm.value).subscribe(res => console.log(res));
-    console.warn('Your order has been submitted', this.EditForm.value);
-    this.getTasks();
+    this.dataProvider.UploadTaskDetails(this.pid,this.tid,this.EditForm.value).subscribe(res => {console.log(res);this.getTasks();});
+    console.warn('Your order has been submitted', this.EditForm.value);    
     this.isCollapsed = !this.isCollapsed;
   }
 
   onDelete(){
-    this.dataProvider.deleteTaskWithId(this.pid,this.tid).subscribe(res=>console.log(res));
-    this.router.navigate(["/projects/"+this.pid]);
+    this.dataProvider.deleteTaskWithId(this.pid,this.tid).subscribe(res=>{console.log(res);this.router.navigate(["/projects/"+this.pid]);});
+    
   }
 }
 

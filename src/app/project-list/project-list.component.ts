@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SharedService } from '../shared.service';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder } from '@angular/forms';
+import { waitForAsync } from '@angular/core/testing';
 
 
 
@@ -27,6 +28,7 @@ export class ProjectListComponent implements OnInit {
   }
 
   getProjects(): void {
+    
     this.dataProvider.getProjectList().subscribe(projectsResp => this.projects = projectsResp);
   }
 
@@ -36,11 +38,14 @@ export class ProjectListComponent implements OnInit {
 
   onSubmitAdd(){
     console.log(this.AddForm.value);
-    console.log(this.AddForm.value.duration);
-    this.dataProvider.addProject(this.AddForm.value).subscribe(res => console.log(res));
-    this.getProjects();
-    this.modalService.dismissAll();
-    this.AddForm.reset();
+    this.dataProvider.addProject(this.AddForm.value).subscribe(res => 
+      {
+        console.log(res);
+        this.getProjects();
+        this.modalService.dismissAll();
+        this.AddForm.reset();
+      });    
+    
   }
 
 }
