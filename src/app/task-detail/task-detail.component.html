@@ -1,61 +1,64 @@
-<div class="row justify-content-center">
-    <h1>Task Details!</h1>
-</div>
-<div class="row justify-content-center">
+<nav class="navbar navbar-expand-sm bg-light navbar-dark">
+    <button class="btn btn-lg btn-outline-primary ml-5" [routerLink]="['/projects/',pid]">Back</button>
+</nav>
+<div class="row justify-content mt-3">
     <div class="col-md-auto col-lg-auto">
-        <div class="card" style="width: 18rem;">
+        <div class="card text-white bg-info" style="width: 33rem;">
             <div class="card-body">
-                <h5 class="card-title">{{task.title}}</h5>
-                <p class="card-text">Task ID: {{ tid }}</p>
-                <p class="card-text">Task Name: {{ task.title }}</p>                
-                <a type="button" class="btn btn-outline-primary card-link" (click)="onDelete()"
+                <h4> Task Details</h4>
+                <p class="card-text mt-3"> Name: {{ task.title }}</p>                
+                <p class="card-text"> Description: {{ task.description }}</p>                
+                <p class="card-text"> Start Date: {{ task.startDate }}</p>                
+                <p class="card-text"> End Date: {{ task.endDate }}</p>                
+                <a type="button" class="btn btn-dark card-link" (click)="onDelete()"
                     >Delete</a>
-                <a type="button" class="btn btn-outline-primary card-link" (click)="collapse.toggle()"
+                <a type="button" class="btn btn-dark card-link" (click)="collapse.toggle()"
                     [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">Edit</a>
             </div>
         </div>
-        <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
-            <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                
+    </div>
+     <div class="col-md-auto col-lg-auto" #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+            <div class="card text-white bg-info" style="width: 33rem;">
+                <div class="card-body">                
                     <h6 class="card-title">Edit Project</h6>
                         <div class="form-group">
                                     <form [formGroup]="EditForm" (ngSubmit)="onEditForm()">            
                                         <div>
-                                            <label for="title">
-                                            Title
-                                            </label>
-                                            <input id="title" type="text" formControlName="title">
+                                            <label class="col-md-4 mr-1 "  for="title">Title</label>
+                                            <input class="ml-2 col-md-6" id="title" type="text" formControlName="title">
                                         </div> 
                                         <div>
-                                            <label for="description">
-                                            Description
-                                            </label>
-                                            <input id="description" type="text" formControlName="description">
+                                            <label class="col-md-4 mr-1" for="description">Description</label>
+                                            <input class="ml-2 col-md-6" id="description" type="text" formControlName="description">
                                         </div>    
-                                        <div>
-                                            <label for="startDate">
-                                            startDate
-                                            </label>
-                                            <input id="startDate" class="form-control" placeholder="yyyy-mm-dd" formControlName="startDate" name="dp1" ngbDatepicker #dp1="ngbDatepicker">
-                                                <div class="input-group-append">
-                                                    <button class="btn btn-outline-secondary calendar" (click)="dp1.toggle()" type="button"></button>
+                                        <div class="row justify-content" >
+                                            <label class="col-md-4 ml-3" for="startDate">Start Date</label>
+                                            <input id="startDate" class="col-md-6" placeholder="YYYY-MM-DD" formControlName="startDate" name="dp1" ngbDatepicker #dp1="ngbDatepicker">
+                                                <div class="input-group-append ml-0.5">
+                                                    <button class="btn btn-dark calendar ml-2" (click)="dp1.toggle()" type="button">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar3" viewBox="0 0 16 16">
+                                                        <path d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z"/>
+                                                        <path d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+                                                        </svg>
+                                                    </button>
                                                 </div>
                                         </div> 
-                                        <div>
-                                            <label for="endDate">
-                                            endDate
-                                            </label>
-                                            <input id="endDate" class="form-control" placeholder="yyyy-mm-dd" formControlName="endDate" name="dp2" ngbDatepicker #dp2="ngbDatepicker">
+                                        <div class="row justify-content mt-2"> 
+                                            <label class="col-md-4 ml-3" for="endDate">End Date</label>
+                                            <input class="col-md-6"  id="endDate" placeholder="YYYY-MM-DD" formControlName="endDate" name="dp2" ngbDatepicker #dp2="ngbDatepicker">
                                                 <div class="input-group-append">
-                                                    <button class="btn btn-outline-secondary calendar" (click)="dp2.toggle()" type="button"></button>
+                                                    <button class="btn btn-dark calendar ml-2" (click)="dp2.toggle()" type="button">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar3" viewBox="0 0 16 16">
+                                                        <path d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z"/>
+                                                        <path d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+                                                        </svg>
+                                                    </button>
                                                 </div>
                                         </div>     
-                                        <button class="btn btn-outline-primary card-link" type="submit">Save</button>                                  
+                                        <button class="btn btn-dark card-link mt-2" type="submit">Save</button>                                  
                                     </form>
                                 </div>
                 </div>
             </div>
         </div>
-    </div>
 </div>

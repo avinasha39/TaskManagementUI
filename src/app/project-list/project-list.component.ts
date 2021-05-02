@@ -36,6 +36,7 @@ export class ProjectListComponent implements OnInit {
 
   onSubmitAdd(){
     console.log(this.AddForm.value);
+    console.log(this.AddForm.value.duration);
     this.dataProvider.addProject(this.AddForm.value).subscribe(res => console.log(res));
     this.getProjects();
     this.modalService.dismissAll();

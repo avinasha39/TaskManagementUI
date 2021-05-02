@@ -52,6 +52,7 @@ export class ProjectDetailComponent implements OnInit {
     console.warn('Your order has been submitted', this.AddForm.value);
     this.getProjectTasks(this.id);
     this.isCollapsedAdd = !this.isCollapsedAdd;
+    this.AddForm.reset();
   }
 
   onProjectEdit(): void {
@@ -59,6 +60,7 @@ export class ProjectDetailComponent implements OnInit {
     console.warn('Your order has been submitted', this.checkoutForm.value);
     this.getProject(this.id);
     this.isCollapsed = !this.isCollapsed;
+    this.checkoutForm.reset();
   }
 
 
